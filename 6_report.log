@@ -1,0 +1,71 @@
+OpenROAD v2.0-17598-ga008522d8 
+Features included (+) or not (-): +Charts +GPU +GUI +Python : None
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 4 thread(s).
+Reading in /home/zhz/OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+Deleted 0 routing obstructions
+[INFO RCX-0431] Defined process_corner X with ext_model_index 0
+[INFO RCX-0029] Defined extraction corner X
+[INFO RCX-0435] Reading extraction model file /home/zhz/OpenROAD-flow-scripts/flow/platforms/asap7/rcx_patterns.rules ...
+[INFO RCX-0436] RC segment generation aes_core (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 230037 rc segments
+[INFO RCX-0439] Coupling Cap extraction aes_core ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0442] 11% of 247795 wires extracted
+[INFO RCX-0442] 53% of 247795 wires extracted
+[INFO RCX-0442] 73% of 247795 wires extracted
+[INFO RCX-0442] 100% of 247795 wires extracted
+[INFO RCX-0045] Extract 25820 nets, 255837 rsegs, 255837 caps, 404300 ccs
+[INFO RCX-0443] 25820 nets finished
+[INFO PSM-0040] All shapes on net VDD are connected.
+[INFO PSM-0073] Using bump pattern with x-pitch 140.0000um, y-pitch 140.0000um, and size 70.0000um with an reduction factor of 3x.
+########## IR report #################
+Net              : VDD
+Corner           : default
+Supply voltage   : 7.70e-01 V
+Worstcase voltage: -5.12e+00 V
+Average voltage  : -2.01e+00 V
+Average IR drop  : 2.78e+00 V
+Worstcase IR drop: 5.89e+00 V
+Percentage drop  : 765.19 %
+######################################
+[INFO PSM-0040] All shapes on net VSS are connected.
+[INFO PSM-0073] Using bump pattern with x-pitch 140.0000um, y-pitch 140.0000um, and size 70.0000um with an reduction factor of 3x.
+########## IR report #################
+Net              : VSS
+Corner           : default
+Supply voltage   : 0.00e+00 V
+Worstcase voltage: 5.84e+00 V
+Average voltage  : 2.79e+00 V
+Average IR drop  : 2.79e+00 V
+Worstcase IR drop: 5.84e+00 V
+Percentage drop  : 758.00 %
+######################################
+Cell type report:                       Count       Area
+  Tie cell                               2476     108.30
+  Buffer                                 2307     351.29
+  Clock buffer                            178      66.83
+  Timing Repair Buffer                    910      90.70
+  Inverter                                820      41.09
+  Clock inverter                           53       5.86
+  Timing Repair inverter                    1       0.06
+  Sequential cell                        2476     938.60
+  Multi-Input combinational cell        16287    1898.26
+  Total                                 25508    3500.99
+Report metrics stage 6, finish...
+
+==========================================================================
+finish report_design_area
+--------------------------------------------------------------------------
+Design area 3534 u^2 48% utilization.
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: ./reports/asap7/aes_secworks/base/final_all.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: ./reports/asap7/aes_secworks/base/final_routing.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: ./reports/asap7/aes_secworks/base/final_placement.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: ./reports/asap7/aes_secworks/base/final_ir_drop.webp.png
+[WARNING GUI-0076] QXcbConnection: XCB error: 13 (BadGC), sequence: 1056, resource id: 0, major code: 131 (Unknown), minor code: 3
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: ./reports/asap7/aes_secworks/base/final_clocks.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: ./reports/asap7/aes_secworks/base/cts_core_clock.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: ./reports/asap7/aes_secworks/base/cts_core_clock_layout.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: ./reports/asap7/aes_secworks/base/final_resizer.webp.png
+Elapsed time: 1:10.45[h:]min:sec. CPU time: user 74.43 sys 5.65 (113%). Peak memory: 967104KB.
