@@ -2,25 +2,30 @@
 read_liberty -lib ./platforms/asap7/lib/ccs/asap7sc7p5t_SEQ_RVT_FF_ccs_220123.lib
 
 # 2. 读取所有 Verilog 文件（按依赖顺序）
-read_verilog ./designs/src/gcd/gcd.v
+read_verilog ./designs/asap7/src/aes_core.v
+read_verilog ./designs/asap7/src/aes_key_mem.v
+read_verilog ./designs/asap7/src/aes_encipher_block.v
+read_verilog ./designs/asap7/src/aes_inv_sbox.v
+read_verilog ./designs/asap7/src/aes_sbox.v
+read_verilog ./designs/asap7/src/aes_decipher_block.v
 
 # 3. 设置顶层模块
-hierarchy -check -top gcd
+hierarchy -check -top aes_core
 
 # 4. 综合与优化
-synth -top gcd -flatten
+synth -top aes_core -flatten
 opt -purge
 
 # 5. 工艺映射（映射到 Nangate45 标准单元）
-dfflibmap -liberty ./platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
-abc -liberty ./platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+dfflibmap -liberty ./platforms/asap7/lib/ccs/asap7sc7p5t_SEQ_RVT_FF_ccs_220123.lib
+abc -liberty ./platforms/asap7/lib/ccs/asap7sc7p5t_SEQ_RVT_FF_ccs_220123.lib
 opt_clean
 
 # 6. 保存门级网表
-write_verilog -noattr ./results/nangate45/gcd/synth/gcd_synth.v
+write_verilog -noattr ./results/searated/synth/aes_core_synth.v
 
 # 7. 生成统计报告
 stat
 
 # 在terminal flow/ 路径下运行命令
-# yosys my_flow/gcd_yosys.ys
+# yosys my_flow/aes_seeworks.ys

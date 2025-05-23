@@ -83,7 +83,7 @@
 #DESIGN_CONFIG=./designs/ihp-sg13g2/i2c-gpio-expander/config.mk
 
 # Default design
-DESIGN_CONFIG ?= ./designs/asap7/aes_secworks/config.mk
+DESIGN_CONFIG ?= ./designs/asap7/aec_secworks/config.mk
 export DESIGN_CONFIG
 include $(DESIGN_CONFIG)
 
