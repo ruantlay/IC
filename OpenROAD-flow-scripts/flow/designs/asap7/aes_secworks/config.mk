@@ -1,6 +1,6 @@
 export PLATFORM               = asap7
 
-export DESIGN_NAME            = aes_core
+export DESIGN_NAME            = aes
 export DESIGN_NICKNAME        = aes_secworks
 
 export VERILOG_FILES    = $(sort $(wildcard ./designs/asap7/src/$(DESIGN_NICKNAME)/*.v))

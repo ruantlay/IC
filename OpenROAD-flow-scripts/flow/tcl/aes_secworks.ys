@@ -1,0 +1,47 @@
+# 1. 读取工艺库（Liberty 格式）
+read_liberty -lib \
+  ./platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib \
+  ./platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib \
+  ./platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib \
+  ./platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib \
+  ./platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+
+
+# 2. 读取所有 Verilog 文件（按依赖顺序）
+read_verilog ./designs/asap7/src/aes_secworks/aes_core.v
+read_verilog ./designs/asap7/src/aes_secworks/aes.v
+read_verilog ./designs/asap7/src/aes_secworks/aes_key_mem.v
+read_verilog ./designs/asap7/src/aes_secworks/aes_encipher_block.v
+read_verilog ./designs/asap7/src/aes_secworks/aes_inv_sbox.v
+read_verilog ./designs/asap7/src/aes_secworks/aes_sbox.v
+read_verilog ./designs/asap7/src/aes_secworks/aes_decipher_block.v
+
+# 3. 设置顶层模块
+hierarchy -check -top aes
+
+# 4. 综合与优化
+synth -top aes -flatten
+opt -purge
+
+# 5. 工艺映射（映射到 asap7 标准单元）
+dfflibmap -liberty ./platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+
+abc -liberty \
+  ./platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib \
+  ./platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib \
+  ./platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib \
+  ./platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib
+
+
+opt_clean
+
+# 6. 保存门级网表
+write_verilog -noattr ./results/separated/synth/aes_synth.v
+
+# 7. 生成统计报告
+stat
+
+# 在terminal flow/ 路径下运行命令
+# yosys tcl/aes_secworks.ys
+
+
