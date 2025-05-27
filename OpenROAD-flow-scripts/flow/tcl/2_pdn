@@ -1,0 +1,33 @@
+set_voltage_domain CORE {
+  default
+  power VDD
+  ground VSS
+}
+
+define_pdn_grid CORE {
+  rails {
+    width 0.18
+    pitch 0.48
+    offset 0
+    layer met1
+  }
+  straps {
+    layer met4
+    width 0.48
+    pitch 20
+    offset 10
+  }
+  straps {
+    layer met5
+    width 0.48
+    pitch 20
+    offset 10
+    direction vertical
+  }
+  connect {
+    layers {met1 met4}
+  }
+  connect {
+    layers {met4 met5}
+  }
+}
