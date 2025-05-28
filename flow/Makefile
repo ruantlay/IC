@@ -5,7 +5,7 @@
 # ==============================================================================
 # Uncomment or add the design to run
 # ==============================================================================
-
+ DESIGN_CONFIG=./designs/nangate45/aes_secworks/config.mk
 # DESIGN_CONFIG=./designs/nangate45/aes/config.mk
 # DESIGN_CONFIG=./designs/nangate45/ariane133/config.mk
 # DESIGN_CONFIG=./designs/nangate45/ariane136/config.mk
@@ -83,7 +83,7 @@
 #DESIGN_CONFIG=./designs/ihp-sg13g2/i2c-gpio-expander/config.mk
 
 # Default design
-DESIGN_CONFIG ?= ./designs/nangate45/gcd/config.mk
+DESIGN_CONFIG ?= ./designs/nangate45/aec_secworks/config.mk
 export DESIGN_CONFIG
 include $(DESIGN_CONFIG)
 

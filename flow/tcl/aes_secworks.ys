@@ -1,0 +1,29 @@
+# 1. 读取工艺库（Liberty 格式）
+read_liberty -lib ./platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+
+# 2. 读取所有 Verilog 文件（按依赖顺序）
+read_verilog ./designs/nangate45/src/aes_secworks/aes_core.v
+read_verilog ./designs/nangate45/src/aes_secworks/aes.v
+read_verilog ./designs/nangate45/src/aes_secworks/aes_key_mem.v
+read_verilog ./designs/nangate45/src/aes_secworks/aes_encipher_block.v
+read_verilog ./designs/nangate45/src/aes_secworks/aes_inv_sbox.v
+read_verilog ./designs/nangate45/src/aes_secworks/aes_sbox.v
+read_verilog ./designs/nangate45/src/aes_secworks/aes_decipher_block.v
+# 3. 设置顶层模块
+hierarchy -check -top aes
+
+# 4. 综合与优化（不加 -flatten）
+synth -top aes
+opt -purge
+
+# 5. 工艺映射（映射到 Nangate45 标准单元）
+dfflibmap -liberty ./platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+abc -liberty ./platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+opt_clean
+
+# 6. 保存门级网表
+write_verilog ./results/separated/synth/aes_synth.v
+
+# 7. 生成统计报告
+stat
+#yosys tcl/aes_secworks.ys
